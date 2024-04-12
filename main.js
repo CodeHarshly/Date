@@ -22,6 +22,7 @@ function getRandomNumber(min, max) {
 btnNo1.addEventListener("click", (e) => {
   page1.style.display = "none";
   page2.style.display = "block";
+  sendEmail("No1");
 });
 btnYes1.addEventListener("click", (e) => {
   btnNo1.classList.add("hide");
@@ -30,6 +31,7 @@ btnYes1.addEventListener("click", (e) => {
   gif.style.display = "none";
   page1.style.display = "none";
   page4.style.display = "block";
+  sendEmail("Yes1");
 });
 
 btnYes2.addEventListener("click", (e) => {
@@ -39,10 +41,12 @@ btnYes2.addEventListener("click", (e) => {
   gif.style.display = "none";
   page2.style.display = "none";
   page4.style.display = "block";
+  sendEmail("Yes2");
 });
 btnNo2.addEventListener("click", (e) => {
   page2.style.display = "none";
   page3.style.display = "block";
+  sendEmail("No2");
 });
 
 function moveButton() {
@@ -65,6 +69,7 @@ function moveButton() {
 
   btnNo.style.top = Math.floor(newTop) + "px";
   btnNo.style.left = Math.floor(newLeft) + "px";
+  sendEmail("No3");
 }
 
 btnNo.addEventListener("mouseover", moveButton);
@@ -78,5 +83,28 @@ btnYes.addEventListener("click", (e) => {
   gif.style.display = "none";
   page3.style.display = "none";
   page4.style.display = "block";
+  sendEmail("Yes3");
 });
 
+function sendEmail(answer) {
+  // Replace 'YOUR_EMAIL_ADDRESS' with your actual email address
+  fetch('https://formspree.io/f/meqypvep', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          answer: answer
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed to send email');
+      }
+      console.log('Thank you for your feedback!');
+  })
+  .catch(error => {
+      console.error('Error sending email:', error);
+      console.log('An error occurred. Please try again later.');
+  });
+}
