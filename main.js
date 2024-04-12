@@ -45,7 +45,7 @@ btnNo2.addEventListener("click", (e) => {
   page3.style.display = "block";
 });
 
-btnNo.addEventListener("mouseover", (event) => {
+function moveButton() {
   const containerHeight = container.getBoundingClientRect().height;
   const containerWidth = container.getBoundingClientRect().width;
   const btnHeight = btnNo.getBoundingClientRect().height;
@@ -65,7 +65,11 @@ btnNo.addEventListener("mouseover", (event) => {
 
   btnNo.style.top = Math.floor(newTop) + "px";
   btnNo.style.left = Math.floor(newLeft) + "px";
-});
+}
+
+btnNo.addEventListener("mouseover", moveButton);
+btnNo.addEventListener("click", moveButton);
+
 
 btnYes.addEventListener("click", (e) => {
   btnNo.classList.add("hide");
