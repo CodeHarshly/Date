@@ -111,6 +111,10 @@ body {
 
 @media (max-width:668px){
   .word>span{
-    font-size: 2.5rem;
+    font-size: 2rem;
+  }
+  .image-1,
+  .image-2 {
+    top: 30%;
   }
 }
